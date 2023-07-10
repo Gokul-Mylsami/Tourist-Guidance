@@ -3,14 +3,17 @@ import "./Topdest.scss";
 import Card from "../TnCard/Card";
 // import Data from "../TnCard/tncards.json";
 import axios from "axios";
-function Topdest() {
+function Topdest({ setloading }) {
   const [places, setPlaces] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get("http://localhost:8000/api/v1/tours");
+      const { data } = await axios.get(
+        "https://pleasant-pink-puppy.cyclic.app/api/v1/tours"
+      );
       setPlaces([...data]);
     };
     getData();
+    setloading(false);
   }, []);
   return (
     <div>
